@@ -1,25 +1,28 @@
+
 package cit360;
 
 
-
-class ThreadDemo extends Thread {
-   private Thread t;
-   private String threadName;
    
-   ThreadDemo( String name) {
+   
+   class RunnableDemo implements Runnable {
+   private Thread t;
+   private final String threadName;
+   
+   RunnableDemo( String name) {
       threadName = name;
       System.out.println("Creating " +  threadName );
    }
    
+   @Override
    public void run() {
       System.out.println("Running " +  threadName );
       try {
-         for(int i = 4; i > 0; i--) {  //loop 4 times
+         for(int i = 4; i > 0; i--) {
             System.out.println("Thread: " + threadName + ", " + i);
             // Let the thread sleep for a while.
             Thread.sleep(50);
          }
-      }catch (InterruptedException e) {  //catch exceptions
+      }catch (InterruptedException e) {
          System.out.println("Thread " +  threadName + " interrupted.");
       }
       System.out.println("Thread " +  threadName + " exiting.");
@@ -34,13 +37,15 @@ class ThreadDemo extends Thread {
    }
 }
 
-public class TestThread {
+public class TestRunnable {
 
    public static void main(String args[]) {
-      ThreadDemo T1 = new ThreadDemo( "Thread#1");
-      T1.start();  //start thread 1
+      RunnableDemo R1 = new RunnableDemo( "Thread-1");
+      R1.start();
       
-      ThreadDemo T2 = new ThreadDemo( "Thread#2");
-      T2.start();  //start thread 2, they will run simultaneous
+      RunnableDemo R2 = new RunnableDemo( "Thread-2");
+      R2.start();
    }   
 }
+    
+
