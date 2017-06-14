@@ -4,7 +4,9 @@ package ApplicationControler;
 import java.util.HashMap;
 
 public class ApplicationController {
-    private Handler handler;
+    private static final HashMap<String, Handler> controlHash = new HashMap<>();
+    
+    private final Handler handler;
 
     public ApplicationController(){
         handler = new Handler();
